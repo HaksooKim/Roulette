@@ -1,0 +1,29 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;box-sizing:border-box}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+body{line-height:1}
+ol,ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
+table{border-collapse:collapse;border-spacing:0}
+a{text-decoration:none}
+img{width:100%}
+@font-face{font-family:'Noto Sans KR';font-style:normal;font-weight:100;src:url(../fonts/NotoSansKR-Thin.woff2) format("woff2"),url(../fonts/NotoSansKR-Thin.woff) format("woff"),url(../fonts/NotoSansKR-Thin.otf) format("opentype")}
+@font-face{font-family:'Noto Sans KR';font-style:normal;font-weight:300;src:url(../fonts/NotoSansKR-Light.woff2) format("woff2"),url(../fonts/NotoSansKR-Light.woff) format("woff"),url(../fonts/NotoSansKR-Light.otf) format("opentype")}
+@font-face{font-family:'Noto Sans KR';font-style:normal;font-weight:350;src:url(../fonts/NotoSans-DemiLight.woff2) format("woff2"),url(../fonts/NotoSans-DemiLight.woff) format("woff"),url(../fonts/NotoSans-DemiLight.otf) format("opentype")}
+@font-face{font-family:'Noto Sans KR';font-style:normal;font-weight:400;src:url(../fonts/NotoSansKR-Regular.woff2) format("woff2"),url(../fonts/NotoSansKR-Regular.woff) format("woff"),url(../fonts/NotoSansKR-Regular.otf) format("opentype")}
+@font-face{font-family:'Noto Sans KR';font-style:normal;font-weight:500;src:url(../fonts/NotoSansKR-Medium.woff2) format("woff2"),url(../fonts/NotoSansKR-Medium.woff) format("woff"),url(../fonts/NotoSansKR-Medium.otf) format("opentype")}
+@font-face{font-family:'Noto Sans KR';font-style:normal;font-weight:700;src:url(../fonts/NotoSansKR-Bold.woff2) format("woff2"),url(../fonts/NotoSansKR-Bold.woff) format("woff"),url(../fonts/NotoSansKR-Bold.otf) format("opentype")}
+@font-face{font-family:'Noto Sans KR';font-style:normal;font-weight:900;src:url(../fonts/NotoSansKR-Black.woff2) format("woff2"),url(../fonts/NotoSansKR-Black.woff) format("woff"),url(../fonts/NotoSansKR-Black.otf) format("opentype")}
+@font-face{font-family:'Roboto';font-style:normal;font-weight:100;src:url(../fonts/Roboto-Thin.woff2) format("woff2"),url(../fonts/Roboto-Thin.woff) format("woff"),url(../fonts/Roboto-Thin.otf) format("opentype")}
+@font-face{font-family:'Roboto';font-style:normal;font-weight:300;src:url(../fonts/Roboto-Light.woff2) format("woff2"),url(../fonts/Roboto-Light.woff) format("woff"),url(../fonts/Roboto-Light.otf) format("opentype")}
+@font-face{font-family:'Roboto';font-style:normal;font-weight:400;src:url(../fonts/Roboto-Regular.woff2) format("woff2"),url(../fonts/Roboto-Regular.woff) format("woff"),url(../fonts/Roboto-Regular.otf) format("opentype")}
+@font-face{font-family:'Roboto';font-style:normal;font-weight:500;src:url(../fonts/Roboto-Medium.woff2) format("woff2"),url(../fonts/Roboto-Medium.woff) format("woff"),url(../fonts/Roboto-Medium.otf) format("opentype")}
+@font-face{font-family:'Roboto';font-style:normal;font-weight:700;src:url(../fonts/Roboto-Bold.woff2) format("woff2"),url(../fonts/Roboto-Bold.woff) format("woff"),url(../fonts/Roboto-Bold.otf) format("opentype")}
+@font-face{font-family:'Roboto';font-style:normal;font-weight:900;src:url(../fonts/Roboto-Black.woff2) format("woff2"),url(../fonts/Roboto-Black.woff) format("woff"),url(../fonts/Roboto-Black.otf) format("opentype")}
+
+main{width:100%;max-width:720px;margin:0 auto}
+main .roulette_area{display:table;text-align:center;width:100%}
+main .roulette_area .roulette_box{display:table-cell;vertical-align:middle}
+main .roulette_area .roulette_box .roulette_center{position:relative;width:100%;padding-bottom:100%;margin:13.88889% 0 0 4.16667%}
+main .roulette_area .roulette_box .roulette_center .btn_start{display:block;width:40.27778%;margin:25% 0 0 25%;position:absolute;top:0;left:0;z-index:10}
+main .roulette_area .roulette_box .roulette_center .roulette_wheel{position:absolute;top:0;left:0;width:88.88889%}
