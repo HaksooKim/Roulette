@@ -21,10 +21,10 @@ img{width:100%}
 @font-face{font-family:'Roboto';font-style:normal;font-weight:700;src:url(../fonts/Roboto-Bold.woff2) format("woff2"),url(../fonts/Roboto-Bold.woff) format("woff"),url(../fonts/Roboto-Bold.otf) format("opentype")}
 @font-face{font-family:'Roboto';font-style:normal;font-weight:900;src:url(../fonts/Roboto-Black.woff2) format("woff2"),url(../fonts/Roboto-Black.woff) format("woff"),url(../fonts/Roboto-Black.otf) format("opentype")}
 
-main{width:100%;max-width:720px;margin:0 auto}
-main .roulette_area{display:table;text-align:center;width:100%}
-main .roulette_area .roulette_box{display:table-cell;vertical-align:middle}
-main .roulette_area .roulette_box .roulette_center{position:relative;width:100%;padding-bottom:100%;margin:13.88889% 0 0 4.16667%}
-main .roulette_area .roulette_box .roulette_center .roulette_arrow{display:block;width:10%;margin:-5% 0 0 39.5%;position:absolute;top:0;left:0;z-index:20}
-main .roulette_area .roulette_box .roulette_center .btn_start{display:block;width:25%;margin:32.5% 0 0 32.5%;position:absolute;top:0;left:0;z-index:10}
-main .roulette_area .roulette_box .roulette_center .roulette_wheel{position:absolute;top:0;left:0;width:88.88889%}
+.main{width:100%;max-width:540px;margin:0 auto}
+.main .roulette_area{display:table;text-align:center;width:100%}
+.main .roulette_area .roulette_box{display:table-cell;vertical-align:middle}
+.main .roulette_area .roulette_box .roulette_center{position:relative;width:100%;padding-bottom:100%;margin:13.88889% 0 0 4.16667%}
+.main .roulette_area .roulette_box .roulette_center .roulette_arrow{display:block;width:10%;margin:-5% 0 0 39.5%;position:absolute;top:0;left:0;z-index:20}
+.main .roulette_area .roulette_box .roulette_center .btn_start{display:block;width:25%;margin:32.5% 0 0 32.5%;position:absolute;top:0;left:0;z-index:10}
+.main .roulette_area .roulette_box .roulette_center .roulette_wheel{position:absolute;top:0;left:0;width:88.88889%}
