@@ -11,7 +11,7 @@
                           postBet()
  */
 // _items are enumerated backward
-const _items  = ["Point 30P", "Discount 10%", "Back FREE", "Discount 30%", "Coupon 1+1", "Discount 20%", "Double x2", "Payback 100%"];
+const _items  = ["Apple AirPod", "BHC Hot Fied Chicken", "1 Month Free Pass", "Point Max 1,000p", "Kakao Emoticon", "Free Delivery Coupon", "Day, Day Diary", "1 Year Free Pass"];
 // _itemAngles are enumberated forward
 const _itemAngles = [22.5, 67.5, 112.5, 157.5, 202.5, 247.5, 292.5, 337.5];
 
@@ -118,7 +118,7 @@ function handledRotate(idx, direction, realAngle, toAngle){
     
     console.log("  handledRotate() : " + direction + ", " + realAngle + ", " + toAngle);
     
-    if((direction == _FORWORD && realAngle >= toAngle) || (direction == _BACKWORD && realAngle <= toAngle)){
+    if((direction == _FORWORD && realAngle > toAngle) || (direction == _BACKWORD && realAngle < toAngle)){
         //try{ _winAudio.play(); }catch(x){}
 
         postBet(idx);
@@ -131,7 +131,7 @@ function handledRotate(idx, direction, realAngle, toAngle){
     }
 
     $(".roulette_wheel").rotate(realAngle);
-    
+
     setTimeout("handledRotate(" + idx + ", '" + direction + "', " + realAngle + ", " + toAngle + ")", 50);
 }
 
