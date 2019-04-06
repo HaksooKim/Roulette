@@ -1,65 +1,72 @@
-/*
-     startBet() ──────┬── init()
-       │              ├── tick() ────────────── tickPlay()
-       │              └── rotate(animation) ─── getSoftLandingTime()
-     endBet()
-       │
-     arrangeBet() ─────── postBet()
-       │
-     handledRotate() ──── rotate(angle)
-                             ├─── tickPlay()
-                          postBet()
- */
 // _items are enumerated backward
 const _items  = ["Apple AirPod", "BHC Hot Fied Chicken", "1 Month Free Pass", "Point Max 1,000p", "Kakao Emoticon", "Free Delivery Coupon", "Day, Day Diary", "1 Year Free Pass"];
-// _itemAngles are enumberated forward
+// _itemAngles are enumerated forward
 const _itemAngles = [22.5, 67.5, 112.5, 157.5, 202.5, 247.5, 292.5, 337.5];
+
+const _ease = ['easeInQuad', 'easeOutQuad',	'easeInOutQuad', 'easeInCubic', 'easeOutCubic', 'easeInOutCubic',
+	           'easeInQuart', 'easeOutQuart', 'easeInOutQuart', 'easeInQuint', 'easeOutQuint', 'easeInOutQuint',
+	           'easeInSine', 'easeOutSine', 'easeInOutSine', 'easeInExpo', 'easeOutExpo', 'easeInOutExpo',
+	           'easeInCirc', 'easeOutCirc', 'easeInOutCirc', 'easeInElastic', 'easeOutElastic', 'easeInOutElastic',
+	           'easeInBack', 'easeOutBack', 'easeInOutBack', 'easeInBounce', 'easeOutBounce', 'easeInOutBounce'];
 
 const _FORWORD  = "Forward";
 const _BACKWORD = "Backward";
 
-const _turnDurationTime = 5000;
+const _turnDurationTime = 6000;
 const _startAngle = 0;
+const _targetAngleMaxVal = ~~(_turnDurationTime / 1000) * 360 + 1; // max 1 turn per second
+const _targetAngleMinVal = ~~(_targetAngleMaxVal / 2); // min 0.5 turn per second
 
 const _tickAudio    = new Audio("aud/tick.mp3"); 
-const _winAudio     = new Audio("aud/win.wav");  
-const _tickInterval = 1.1;
+const _winAudio     = new Audio("aud/win.wav"); 
+const _tickAngle    = 4;
+const _tickKeepTime = 0.015;
 
-let _tickCount    = 10;
-let _tickEnd      = false;
+let _isBetting = false;
 
 function startBet(){
+	if(_isBetting) return;
+	
     init();        	
-    tick();
+    tick(0);
     
     $(".roulette_wheel").rotate({
             duration  : _turnDurationTime,
             angle     : _startAngle,
-            animateTo : getSoftLandingTime(),
+            easing    : getEase(),
+            tick      : tick,
+            animateTo : getTargetAngle(),
             callback  : endBet
         }
     );
 }
 
 function init(){
+    _isBetting = true;
     _tickCount = 10;
-    _tickEnd   = false;
+    _lastTickAngle = 0;
+    _lastTickTime = 0;
+    _tickStarted = false;
 }
 
-function getSoftLandingTime(){
-    /*
-        return a number between 1500 and 5000
-    */
-    const maxVal = 5000;
-    const minVal = 1500;
-    const result = Math.floor(Math.random() * (maxVal - minVal + 1)) + minVal;
-    console.log("> getSoftLandingTime() : " + result);
-    return result;
+function getEase(){
+	const from = 0;
+	const to = _ease.length - 1;
+	const result = getRandomValue(from, to);
+	console.log("> getEase() : " + _ease[result]);
+	return $.easing[_ease[result]];
 }
 
+function getTargetAngle(){
+	const result = getRandomValue(_targetAngleMaxVal, _targetAngleMinVal);
+	console.log("> getTargetAngle() : " + result);
+	return result;
+}
+
+function getRandomValue(from, to){
+	return ~~(Math.random() * (to - from + 1)) + from;
+}
 function endBet(){
-    _tickEnd = true;
-    
     let totalAngle = $(".roulette_wheel").getRotateAngle();
     let realAngle = totalAngle % 360;
     let idx = 0;
@@ -70,7 +77,7 @@ function endBet(){
         }
     }
     
-    arrangeBet(idx, realAngle);
+    setTimeout("arrangeBet("+idx+", "+realAngle+")", 300);
     
     console.log("> endBet() : " + totalAngle + " : " + realAngle + " : " + idx + " : " + _items[idx]);
 }
@@ -106,6 +113,8 @@ function arrangeBet(idx, realAngle){
 }
 
 function postBet(idx){
+	_isBetting = false;
+	
     alert("You acquired '" + _items[idx] + "' !");
 }
 
@@ -119,7 +128,7 @@ function handledRotate(idx, direction, realAngle, toAngle){
     console.log("  handledRotate() : " + direction + ", " + realAngle + ", " + toAngle);
     
     if((direction == _FORWORD && realAngle > toAngle) || (direction == _BACKWORD && realAngle < toAngle)){
-        //try{ _winAudio.play(); }catch(x){}
+        try{ _winAudio.play(); }catch(x){}
 
         postBet(idx);
 
@@ -135,23 +144,22 @@ function handledRotate(idx, direction, realAngle, toAngle){
     setTimeout("handledRotate(" + idx + ", '" + direction + "', " + realAngle + ", " + toAngle + ")", 50);
 }
 
-function tick(){
-    try{
-        tickPlay();
-        _tickCount *= _tickInterval;
-        
-        if(!_tickEnd){
-            setTimeout("tick()", _tickCount);
-        }
-    }catch(x){
-        console.log("!!! tick() Exception : " + x);
-    }
+let _lastTickAngle = 0;
+function tick(a){
+	if(a == undefined) return;
+	
+	if((a - _lastTickAngle) >= _tickAngle){
+		tickPlay();
+		_lastTickAngle = a;
+	}
 }
 
 function tickPlay(){
     try{
-        _tickAudio.pause();
-        _tickAudio.currentTime = 0;
+    	if(_tickAudio.currentTime > _tickKeepTime){
+	        _tickAudio.pause();
+	        _tickAudio.currentTime = 0;
+    	}
         _tickAudio.play();
     }catch(e){}
 }
